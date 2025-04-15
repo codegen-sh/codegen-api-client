@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "openapi_client"
+name = "codegen_api_client"
 version = "1.0.0"
 description = "Developer API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
@@ -72,9 +72,7 @@ disallow_any_generics = true
 #warn_return_any = true
 
 [[tool.mypy.overrides]]
-module = [
-  "openapi_client.configuration",
-]
+module = ["openapi_client.configuration"]
 warn_unused_ignores = true
 strict_equality = true
 extra_checks = true
