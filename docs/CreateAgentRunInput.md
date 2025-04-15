@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.create_agent_run_input import CreateAgentRunInput
+from codegen_api_client.models.create_agent_run_input import CreateAgentRunInput
 
 # TODO update the JSON string below
 json = "{}"

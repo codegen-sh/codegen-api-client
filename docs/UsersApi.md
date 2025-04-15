@@ -1,4 +1,4 @@
-# openapi_client.UsersApi
+# codegen_api_client.UsersApi
 
 All URIs are relative to *http://localhost*
 
@@ -26,22 +26,22 @@ The requesting user must be a member of the organization to access this endpoint
 
 
 ```python
-import openapi_client
-from openapi_client.models.user_response import UserResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.user_response import UserResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UsersApi(api_client)
+    api_instance = codegen_api_client.UsersApi(api_client)
     org_id = 'org_id_example' # str | 
     user_id = 'user_id_example' # str | 
     authorization = None # object |  (optional)
@@ -103,22 +103,22 @@ The requesting user must be a member of the organization to access this endpoint
 
 
 ```python
-import openapi_client
-from openapi_client.models.user_response import UserResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.user_response import UserResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UsersApi(api_client)
+    api_instance = codegen_api_client.UsersApi(api_client)
     org_id = 'org_id_example' # str | 
     user_id = 'user_id_example' # str | 
     authorization = None # object |  (optional)
@@ -180,22 +180,22 @@ The requesting user must be a member of the organization to access this endpoint
 
 
 ```python
-import openapi_client
-from openapi_client.models.user_response import UserResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.user_response import UserResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UsersApi(api_client)
+    api_instance = codegen_api_client.UsersApi(api_client)
     org_id = 'org_id_example' # str | 
     user_id = 'user_id_example' # str | 
     authorization = None # object |  (optional)
@@ -257,22 +257,22 @@ The requesting user must be a member of the organization to access this endpoint
 
 
 ```python
-import openapi_client
-from openapi_client.models.page_user_response import PageUserResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.page_user_response import PageUserResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UsersApi(api_client)
+    api_instance = codegen_api_client.UsersApi(api_client)
     org_id = 'org_id_example' # str | 
     skip = 0 # int |  (optional) (default to 0)
     limit = 100 # int |  (optional) (default to 100)
@@ -336,22 +336,22 @@ The requesting user must be a member of the organization to access this endpoint
 
 
 ```python
-import openapi_client
-from openapi_client.models.page_user_response import PageUserResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.page_user_response import PageUserResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UsersApi(api_client)
+    api_instance = codegen_api_client.UsersApi(api_client)
     org_id = 'org_id_example' # str | 
     skip = 0 # int |  (optional) (default to 0)
     limit = 100 # int |  (optional) (default to 100)
@@ -415,22 +415,22 @@ The requesting user must be a member of the organization to access this endpoint
 
 
 ```python
-import openapi_client
-from openapi_client.models.page_user_response import PageUserResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.page_user_response import PageUserResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UsersApi(api_client)
+    api_instance = codegen_api_client.UsersApi(api_client)
     org_id = 'org_id_example' # str | 
     skip = 0 # int |  (optional) (default to 0)
     limit = 100 # int |  (optional) (default to 100)

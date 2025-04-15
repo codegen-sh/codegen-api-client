@@ -20,7 +20,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "codegen_api_client"
+NAME = "codegen-api-client"
 VERSION = "1.0.0"
 PYTHON_REQUIRES = ">= 3.8"
 REQUIRES = [
@@ -45,5 +45,5 @@ setup(
     long_description="""\
     API for application developers
     """,  # noqa: E501
-    package_data={"openapi_client": ["py.typed"]},
+    package_data={"codegen_api_client": ["py.typed"]},
 )

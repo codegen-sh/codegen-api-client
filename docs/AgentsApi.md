@@ -1,4 +1,4 @@
-# openapi_client.AgentsApi
+# codegen_api_client.AgentsApi
 
 All URIs are relative to *http://localhost*
 
@@ -28,25 +28,25 @@ of the specified organization.
 
 
 ```python
-import openapi_client
-from openapi_client.models.agent_run_response import AgentRunResponse
-from openapi_client.models.create_agent_run_input import CreateAgentRunInput
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.agent_run_response import AgentRunResponse
+from codegen_api_client.models.create_agent_run_input import CreateAgentRunInput
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AgentsApi(api_client)
+    api_instance = codegen_api_client.AgentsApi(api_client)
     org_id = 56 # int | 
-    create_agent_run_input = openapi_client.CreateAgentRunInput() # CreateAgentRunInput | 
+    create_agent_run_input = codegen_api_client.CreateAgentRunInput() # CreateAgentRunInput | 
     authorization = None # object |  (optional)
 
     try:
@@ -108,25 +108,25 @@ of the specified organization.
 
 
 ```python
-import openapi_client
-from openapi_client.models.agent_run_response import AgentRunResponse
-from openapi_client.models.create_agent_run_input import CreateAgentRunInput
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.agent_run_response import AgentRunResponse
+from codegen_api_client.models.create_agent_run_input import CreateAgentRunInput
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AgentsApi(api_client)
+    api_instance = codegen_api_client.AgentsApi(api_client)
     org_id = 56 # int | 
-    create_agent_run_input = openapi_client.CreateAgentRunInput() # CreateAgentRunInput | 
+    create_agent_run_input = codegen_api_client.CreateAgentRunInput() # CreateAgentRunInput | 
     authorization = None # object |  (optional)
 
     try:
@@ -188,25 +188,25 @@ of the specified organization.
 
 
 ```python
-import openapi_client
-from openapi_client.models.agent_run_response import AgentRunResponse
-from openapi_client.models.create_agent_run_input import CreateAgentRunInput
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.agent_run_response import AgentRunResponse
+from codegen_api_client.models.create_agent_run_input import CreateAgentRunInput
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AgentsApi(api_client)
+    api_instance = codegen_api_client.AgentsApi(api_client)
     org_id = 56 # int | 
-    create_agent_run_input = openapi_client.CreateAgentRunInput() # CreateAgentRunInput | 
+    create_agent_run_input = codegen_api_client.CreateAgentRunInput() # CreateAgentRunInput | 
     authorization = None # object |  (optional)
 
     try:
@@ -267,22 +267,22 @@ this endpoint can be polled to check for completion.
 
 
 ```python
-import openapi_client
-from openapi_client.models.agent_run_response import AgentRunResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.agent_run_response import AgentRunResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AgentsApi(api_client)
+    api_instance = codegen_api_client.AgentsApi(api_client)
     agent_run_id = 56 # int | 
     org_id = 56 # int | 
     authorization = None # object |  (optional)
@@ -345,22 +345,22 @@ this endpoint can be polled to check for completion.
 
 
 ```python
-import openapi_client
-from openapi_client.models.agent_run_response import AgentRunResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.agent_run_response import AgentRunResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AgentsApi(api_client)
+    api_instance = codegen_api_client.AgentsApi(api_client)
     agent_run_id = 56 # int | 
     org_id = 56 # int | 
     authorization = None # object |  (optional)
@@ -423,22 +423,22 @@ this endpoint can be polled to check for completion.
 
 
 ```python
-import openapi_client
-from openapi_client.models.agent_run_response import AgentRunResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.agent_run_response import AgentRunResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AgentsApi(api_client)
+    api_instance = codegen_api_client.AgentsApi(api_client)
     agent_run_id = 56 # int | 
     org_id = 56 # int | 
     authorization = None # object |  (optional)

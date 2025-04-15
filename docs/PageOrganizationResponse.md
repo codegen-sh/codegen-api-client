@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.page_organization_response import PageOrganizationResponse
+from codegen_api_client.models.page_organization_response import PageOrganizationResponse
 
 # TODO update the JSON string below
 json = "{}"

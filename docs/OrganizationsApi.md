@@ -1,4 +1,4 @@
-# openapi_client.OrganizationsApi
+# codegen_api_client.OrganizationsApi
 
 All URIs are relative to *http://localhost*
 
@@ -24,22 +24,22 @@ Use pagination parameters to control the number of results returned.
 
 
 ```python
-import openapi_client
-from openapi_client.models.page_organization_response import PageOrganizationResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.page_organization_response import PageOrganizationResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.OrganizationsApi(api_client)
+    api_instance = codegen_api_client.OrganizationsApi(api_client)
     skip = 0 # int |  (optional) (default to 0)
     limit = 100 # int |  (optional) (default to 100)
     authorization = None # object |  (optional)
@@ -102,22 +102,22 @@ Use pagination parameters to control the number of results returned.
 
 
 ```python
-import openapi_client
-from openapi_client.models.page_organization_response import PageOrganizationResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.page_organization_response import PageOrganizationResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.OrganizationsApi(api_client)
+    api_instance = codegen_api_client.OrganizationsApi(api_client)
     skip = 0 # int |  (optional) (default to 0)
     limit = 100 # int |  (optional) (default to 100)
     authorization = None # object |  (optional)
@@ -180,22 +180,22 @@ Use pagination parameters to control the number of results returned.
 
 
 ```python
-import openapi_client
-from openapi_client.models.page_organization_response import PageOrganizationResponse
-from openapi_client.rest import ApiException
+import codegen_api_client
+from codegen_api_client.models.page_organization_response import PageOrganizationResponse
+from codegen_api_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = codegen_api_client.Configuration(
     host = "http://localhost"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with codegen_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.OrganizationsApi(api_client)
+    api_instance = codegen_api_client.OrganizationsApi(api_client)
     skip = 0 # int |  (optional) (default to 0)
     limit = 100 # int |  (optional) (default to 100)
     authorization = None # object |  (optional)

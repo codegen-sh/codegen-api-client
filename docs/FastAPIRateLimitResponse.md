@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.fast_api_rate_limit_response import FastAPIRateLimitResponse
+from codegen_api_client.models.fast_api_rate_limit_response import FastAPIRateLimitResponse
 
 # TODO update the JSON string below
 json = "{}"

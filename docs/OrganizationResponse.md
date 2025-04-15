@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.organization_response import OrganizationResponse
+from codegen_api_client.models.organization_response import OrganizationResponse
 
 # TODO update the JSON string below
 json = "{}"

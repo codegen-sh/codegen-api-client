@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.user_response import UserResponse
+from codegen_api_client.models.user_response import UserResponse
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.organization_settings import OrganizationSettings
+from codegen_api_client.models.organization_settings import OrganizationSettings
 
 # TODO update the JSON string below
 json = "{}"

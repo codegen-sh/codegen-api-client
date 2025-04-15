@@ -7,7 +7,7 @@ license = "NoLicense"
 readme = "README.md"
 repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Developer API"]
-include = ["openapi_client/py.typed"]
+include = ["codegen_api_client/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -35,7 +35,7 @@ extension-pkg-whitelist = "pydantic"
 
 [tool.mypy]
 files = [
-  "openapi_client",
+  "codegen_api_client",
   #"test",  # auto-generated tests
   "tests", # hand-written tests
 ]
@@ -72,7 +72,9 @@ disallow_any_generics = true
 #warn_return_any = true
 
 [[tool.mypy.overrides]]
-module = ["openapi_client.configuration"]
+module = [
+  "codegen_api_client.configuration",
+]
 warn_unused_ignores = true
 strict_equality = true
 extra_checks = true
