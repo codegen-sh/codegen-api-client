@@ -1,0 +1,25 @@
+name: codegen_api_client Build and Release
+
+on: 
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-and-release:
+    environment: release
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Build
+        run: |
+          uv build
+      - name: Publish
+        run: |
+          uv publish
