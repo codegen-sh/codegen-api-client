@@ -3,7 +3,7 @@ name: codegen_api_client Build and Release
 on: 
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build-and-release:

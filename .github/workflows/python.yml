@@ -8,10 +8,10 @@ name: codegen_api_client Python package
 on: 
   push:
     branches:
-      - main
+      - develop
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
