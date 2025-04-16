@@ -17,15 +17,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+      - name: Set up UV ${{ matrix.python-version }}
+        uses: astral-sh/setup-uv@v5
         with:
+          enable-cache: true
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install -r test-requirements.txt
       - name: Test with pytest
         run: |
-          pytest --cov=codegen_api_client
+          uv run pytest --cov=codegen_api_client

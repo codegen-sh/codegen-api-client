@@ -1,34 +1,43 @@
-[tool.poetry]
+[project]
 name = "codegen_api_client"
 version = "1.0.0"
 description = "Developer API"
-authors = ["OpenAPI Generator Community <team@openapitools.org>"]
-license = "NoLicense"
+authors = [{ name = "OpenAPI Generator Community", email = "team@openapitools.org" }]
+requires-python = "~=3.8"
 readme = "README.md"
-repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Developer API"]
-include = ["codegen_api_client/py.typed"]
+license = "Apache-2.0"
+keywords = [
+    "OpenAPI",
+    "OpenAPI-Generator",
+    "Developer API",
+]
+dependencies = [
+    "urllib3>= 1.25.3, < 3.0.0",
+    "python-dateutil>= 2.8.2",
+    "pydantic>= 2",
+    "typing-extensions>= 4.7.1",
+]
 
-[tool.poetry.dependencies]
-python = "^3.8"
+[project.urls]
+Repository = "https://github.com/codegen-sh/codegen-api-client"
 
-urllib3 = ">= 1.25.3, < 3.0.0"
-python-dateutil = ">= 2.8.2"
-pydantic = ">= 2"
-typing-extensions = ">= 4.7.1"
+[dependency-groups]
+dev = [
+    "pytest>= 7.2.1",
+    "pytest-cov>= 2.8.1",
+    "tox>= 3.9.0",
+    "flake8>= 4.0.0",
+    "types-python-dateutil>= 2.8.19.14",
+    "mypy>= 1.5",
+]
 
-[tool.poetry.dev-dependencies]
-pytest = ">= 7.2.1"
-pytest-cov = ">= 2.8.1"
-tox = ">= 3.9.0"
-flake8 = ">= 4.0.0"
-types-python-dateutil = ">= 2.8.19.14"
-mypy = ">= 1.5"
-
+[tool.uv.build-backend]
+module-root=""
+data = ["codegen_api_client/py.typed"]
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.6,<0.7"]
+build-backend = "uv_build"
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"
@@ -59,17 +68,6 @@ check_untyped_defs = true
 disallow_subclassing_any = true
 disallow_untyped_decorators = true
 disallow_any_generics = true
-
-### These next few are various gradations of forcing use of type annotations
-#disallow_untyped_calls = true
-#disallow_incomplete_defs = true
-#disallow_untyped_defs = true
-#
-### This one isn't too hard to get passing, but return on investment is lower
-#no_implicit_reexport = true
-#
-### This one can be tricky to get passing if you use a lot of untyped libraries
-#warn_return_any = true
 
 [[tool.mypy.overrides]]
 module = [
