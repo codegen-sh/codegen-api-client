@@ -6,31 +6,31 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-T = TypeVar("T", bound="FastAPIRateLimitResponse")
+T = TypeVar("T", bound="APIRateLimitErrorResponse")
 
 
 @_attrs_define
-class FastAPIRateLimitResponse:
+class APIRateLimitErrorResponse:
     """
     Attributes:
-        detail (Union[Unset, str]):  Default: 'Rate limit exceeded'.
+        message (Union[Unset, str]):  Default: 'Rate limit exceeded. Please try again later.'.
         status_code (Union[Unset, int]):  Default: 429.
     """
 
-    detail: Union[Unset, str] = "Rate limit exceeded"
+    message: Union[Unset, str] = "Rate limit exceeded. Please try again later."
     status_code: Union[Unset, int] = 429
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        detail = self.detail
+        message = self.message
 
         status_code = self.status_code
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if detail is not UNSET:
-            field_dict["detail"] = detail
+        if message is not UNSET:
+            field_dict["message"] = message
         if status_code is not UNSET:
             field_dict["status_code"] = status_code
 
@@ -39,17 +39,17 @@ class FastAPIRateLimitResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        detail = d.pop("detail", UNSET)
+        message = d.pop("message", UNSET)
 
         status_code = d.pop("status_code", UNSET)
 
-        fast_api_rate_limit_response = cls(
-            detail=detail,
+        api_rate_limit_error_response = cls(
+            message=message,
             status_code=status_code,
         )
 
-        fast_api_rate_limit_response.additional_properties = d
-        return fast_api_rate_limit_response
+        api_rate_limit_error_response.additional_properties = d
+        return api_rate_limit_error_response
 
     @property
     def additional_keys(self) -> list[str]:

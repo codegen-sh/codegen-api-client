@@ -16,10 +16,15 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictInt
+from pydantic import Field, StrictInt
 from typing import Any, Optional
+from typing_extensions import Annotated
 from codegen_api_client.models.agent_run_response import AgentRunResponse
+from codegen_api_client.models.api_agent_run_source_type import ApiAgentRunSourceType
 from codegen_api_client.models.create_agent_run_input import CreateAgentRunInput
+from codegen_api_client.models.page_agent_run_response import PageAgentRunResponse
+from codegen_api_client.models.resume_agent_run_input import ResumeAgentRunInput
+from codegen_api_client.models.stop_agent_run_input import StopAgentRunInput
 
 from codegen_api_client.api_client import ApiClient, RequestSerialized
 from codegen_api_client.api_response import ApiResponse
@@ -37,6 +42,951 @@ class AgentsApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/ban',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_0(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_0_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_0_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_0_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/ban',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_1(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_1_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_1_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Ban All Checks For Agent Run
+
+        Ban all checks for a PR and stop all related agents.  This endpoint: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _ban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_ban_post_1_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/ban',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
 
 
     @validate_call
@@ -60,7 +1010,7 @@ class AgentsApi:
     ) -> AgentRunResponse:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -102,8 +1052,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -137,7 +1090,7 @@ class AgentsApi:
     ) -> ApiResponse[AgentRunResponse]:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -179,8 +1132,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -214,7 +1170,7 @@ class AgentsApi:
     ) -> RESTResponseType:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -256,8 +1212,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -369,7 +1328,7 @@ class AgentsApi:
     ) -> AgentRunResponse:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -411,8 +1370,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -446,7 +1408,7 @@ class AgentsApi:
     ) -> ApiResponse[AgentRunResponse]:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -488,8 +1450,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -523,7 +1488,7 @@ class AgentsApi:
     ) -> RESTResponseType:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -565,8 +1530,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -678,7 +1646,7 @@ class AgentsApi:
     ) -> AgentRunResponse:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -720,8 +1688,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -755,7 +1726,7 @@ class AgentsApi:
     ) -> ApiResponse[AgentRunResponse]:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -797,8 +1768,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -832,7 +1806,7 @@ class AgentsApi:
     ) -> RESTResponseType:
         """Create Agent Run
 
-        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.
+        Create a new agent run.  Creates and initiates a long-running agent process based on the provided prompt. The process will complete asynchronously, and the response contains the agent run ID which can be used to check the status later. The requesting user must be a member of the specified organization.  This endpoint accepts both a text prompt and an optional image file upload.  Rate limit: 10 requests per minute.
 
         :param org_id: (required)
         :type org_id: int
@@ -874,8 +1848,11 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '402': "AgentRunLimitReachedErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "NoReposFoundInOrgErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -987,7 +1964,7 @@ class AgentsApi:
     ) -> AgentRunResponse:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1029,8 +2006,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1064,7 +2043,7 @@ class AgentsApi:
     ) -> ApiResponse[AgentRunResponse]:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1106,8 +2085,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1141,7 +2122,7 @@ class AgentsApi:
     ) -> RESTResponseType:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1183,8 +2164,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1283,7 +2266,7 @@ class AgentsApi:
     ) -> AgentRunResponse:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1325,8 +2308,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1360,7 +2345,7 @@ class AgentsApi:
     ) -> ApiResponse[AgentRunResponse]:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1402,8 +2387,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1437,7 +2424,7 @@ class AgentsApi:
     ) -> RESTResponseType:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1479,8 +2466,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1579,7 +2568,7 @@ class AgentsApi:
     ) -> AgentRunResponse:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1621,8 +2610,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1656,7 +2647,7 @@ class AgentsApi:
     ) -> ApiResponse[AgentRunResponse]:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1698,8 +2689,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1733,7 +2726,7 @@ class AgentsApi:
     ) -> RESTResponseType:
         """Get Agent Run
 
-        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.
+        Retrieve the status and result of an agent run.  Returns the current status, progress, and any available results for the specified agent run. The agent run must belong to the specified organization. If the agent run is still in progress, this endpoint can be polled to check for completion.  Rate limit: 60 requests per 30 seconds.
 
         :param agent_run_id: (required)
         :type agent_run_id: int
@@ -1775,8 +2768,10 @@ class AgentsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1839,6 +2834,3897 @@ class AgentsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/organizations/{org_id}/agent/run/{agent_run_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PageAgentRunResponse:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_with_http_info(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PageAgentRunResponse]:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_without_preload_content(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_agent_runs_v1_organizations_org_id_agent_runs_get_serialize(
+        self,
+        org_id,
+        user_id,
+        source_type,
+        skip,
+        limit,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        if user_id is not None:
+            
+            _query_params.append(('user_id', user_id))
+            
+        if source_type is not None:
+            
+            _query_params.append(('source_type', source_type.value))
+            
+        if skip is not None:
+            
+            _query_params.append(('skip', skip))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/organizations/{org_id}/agent/runs',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_0(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PageAgentRunResponse:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_0_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_0_with_http_info(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PageAgentRunResponse]:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_0_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_0_without_preload_content(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_0_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_agent_runs_v1_organizations_org_id_agent_runs_get_0_serialize(
+        self,
+        org_id,
+        user_id,
+        source_type,
+        skip,
+        limit,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        if user_id is not None:
+            
+            _query_params.append(('user_id', user_id))
+            
+        if source_type is not None:
+            
+            _query_params.append(('source_type', source_type.value))
+            
+        if skip is not None:
+            
+            _query_params.append(('skip', skip))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/organizations/{org_id}/agent/runs',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_1(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PageAgentRunResponse:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_1_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_1_with_http_info(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PageAgentRunResponse]:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_1_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_agent_runs_v1_organizations_org_id_agent_runs_get_1_without_preload_content(
+        self,
+        org_id: StrictInt,
+        user_id: Annotated[Optional[StrictInt], Field(description="Filter by user ID who initiated the agent runs")] = None,
+        source_type: Annotated[Optional[ApiAgentRunSourceType], Field(description="Filter by source type of the agent runs")] = None,
+        skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List Agent Runs
+
+        List agent runs for an organization with optional user filtering.  Returns a paginated list of agent runs for the specified organization. Optionally filter by user_id to get only agent runs initiated by a specific user. Results are ordered by creation date (newest first).  Rate limit: 60 requests per 30 seconds.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param user_id: Filter by user ID who initiated the agent runs
+        :type user_id: int
+        :param source_type: Filter by source type of the agent runs
+        :type source_type: ApiAgentRunSourceType
+        :param skip:
+        :type skip: int
+        :param limit:
+        :type limit: int
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_agent_runs_v1_organizations_org_id_agent_runs_get_1_serialize(
+            org_id=org_id,
+            user_id=user_id,
+            source_type=source_type,
+            skip=skip,
+            limit=limit,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PageAgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_agent_runs_v1_organizations_org_id_agent_runs_get_1_serialize(
+        self,
+        org_id,
+        user_id,
+        source_type,
+        skip,
+        limit,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        if user_id is not None:
+            
+            _query_params.append(('user_id', user_id))
+            
+        if source_type is not None:
+            
+            _query_params.append(('source_type', source_type.value))
+            
+        if skip is not None:
+            
+            _query_params.append(('skip', skip))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/organizations/{org_id}/agent/runs',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/remove-from-pr',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_0(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_0_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_0_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_0_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/remove-from-pr',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_1(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_1_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_1_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove Codegen From Pr
+
+        Remove Codegen from a PR.  This endpoint performs the same action as banning all checks but with more user-friendly naming. It: 1. Flags the PR to prevent future CI/CD check suite events from being processed 2. Stops all current agents for that PR
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _remove_codegen_from_pr_v1_organizations_org_id_agent_run_remove_from_pr_post_1_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/remove-from-pr',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentRunResponse:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_with_http_info(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentRunResponse]:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_without_preload_content(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _resume_agent_run_v1_organizations_org_id_agent_run_resume_post_serialize(
+        self,
+        org_id,
+        resume_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if resume_agent_run_input is not None:
+            _body_params = resume_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/resume',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_0(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentRunResponse:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_0_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_0_with_http_info(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentRunResponse]:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_0_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_0_without_preload_content(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_0_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _resume_agent_run_v1_organizations_org_id_agent_run_resume_post_0_serialize(
+        self,
+        org_id,
+        resume_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if resume_agent_run_input is not None:
+            _body_params = resume_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/resume',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_1(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentRunResponse:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_1_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_1_with_http_info(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentRunResponse]:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_1_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def resume_agent_run_v1_organizations_org_id_agent_run_resume_post_1_without_preload_content(
+        self,
+        org_id: StrictInt,
+        resume_agent_run_input: ResumeAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resume Agent Run
+
+        Resume a paused agent run.  Resumes a paused agent run, allowing it to continue processing.
+
+        :param org_id: (required)
+        :type org_id: int
+        :param resume_agent_run_input: (required)
+        :type resume_agent_run_input: ResumeAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resume_agent_run_v1_organizations_org_id_agent_run_resume_post_1_serialize(
+            org_id=org_id,
+            resume_agent_run_input=resume_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentRunResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _resume_agent_run_v1_organizations_org_id_agent_run_resume_post_1_serialize(
+        self,
+        org_id,
+        resume_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if resume_agent_run_input is not None:
+            _body_params = resume_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/resume',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/unban',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_0(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_0_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_0_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_0_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_0_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/unban',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_1(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> object:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_1_with_http_info(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[object]:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_1_without_preload_content(
+        self,
+        org_id: StrictInt,
+        stop_agent_run_input: StopAgentRunInput,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Unban All Checks For Agent Run
+
+        Unban all checks for a PR.  This endpoint: 1. Removes the ban flag from the PR to allow future CI/CD check suite events to be processed 2. Handles both URL-based bans and parent-agent-run-based bans
+
+        :param org_id: (required)
+        :type org_id: int
+        :param stop_agent_run_input: (required)
+        :type stop_agent_run_input: StopAgentRunInput
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_1_serialize(
+            org_id=org_id,
+            stop_agent_run_input=stop_agent_run_input,
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "object",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "AgentRunNotFoundErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _unban_all_checks_for_agent_run_v1_organizations_org_id_agent_run_unban_post_1_serialize(
+        self,
+        org_id,
+        stop_agent_run_input,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if org_id is not None:
+            _path_params['org_id'] = org_id
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+        if stop_agent_run_input is not None:
+            _body_params = stop_agent_run_input
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/organizations/{org_id}/agent/run/unban',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

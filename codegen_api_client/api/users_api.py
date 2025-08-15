@@ -16,7 +16,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field, StrictInt
 from typing import Any, Optional
 from typing_extensions import Annotated
 from codegen_api_client.models.page_user_response import PageUserResponse
@@ -41,10 +41,817 @@ class UsersApi:
 
 
     @validate_call
+    def get_current_user_info_v1_users_me_get(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UserResponse:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_with_http_info(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UserResponse]:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_without_preload_content(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_current_user_info_v1_users_me_get_serialize(
+        self,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/users/me',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_0(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UserResponse:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_0_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_0_with_http_info(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UserResponse]:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_0_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_0_without_preload_content(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_0_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_current_user_info_v1_users_me_get_0_serialize(
+        self,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/users/me',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_1(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UserResponse:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_1_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_1_with_http_info(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UserResponse]:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_1_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_current_user_info_v1_users_me_get_1_without_preload_content(
+        self,
+        authorization: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Current User Info
+
+        Get current user information from API token.  Returns detailed information about the user associated with the provided API token. This is useful for applications that need to identify the current user from their API token.  Rate limit: 60 requests per 30 seconds.
+
+        :param authorization:
+        :type authorization: object
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_current_user_info_v1_users_me_get_1_serialize(
+            authorization=authorization,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '422': "HTTPValidationError",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_current_user_info_v1_users_me_get_1_serialize(
+        self,
+        authorization,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if authorization is not None:
+            _header_params['authorization'] = authorization
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/users/me',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -61,12 +868,12 @@ class UsersApi:
     ) -> UserResponse:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -103,8 +910,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -120,8 +929,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_with_http_info(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -138,12 +947,12 @@ class UsersApi:
     ) -> ApiResponse[UserResponse]:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -180,8 +989,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -197,8 +1008,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_without_preload_content(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -215,12 +1026,12 @@ class UsersApi:
     ) -> RESTResponseType:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -257,8 +1068,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -339,8 +1152,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_0(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -357,12 +1170,12 @@ class UsersApi:
     ) -> UserResponse:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -399,8 +1212,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -416,8 +1231,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_0_with_http_info(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -434,12 +1249,12 @@ class UsersApi:
     ) -> ApiResponse[UserResponse]:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -476,8 +1291,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -493,8 +1310,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_0_without_preload_content(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -511,12 +1328,12 @@ class UsersApi:
     ) -> RESTResponseType:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -553,8 +1370,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -635,8 +1454,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_1(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -653,12 +1472,12 @@ class UsersApi:
     ) -> UserResponse:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -695,8 +1514,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -712,8 +1533,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_1_with_http_info(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -730,12 +1551,12 @@ class UsersApi:
     ) -> ApiResponse[UserResponse]:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -772,8 +1593,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -789,8 +1612,8 @@ class UsersApi:
     @validate_call
     def get_user_v1_organizations_org_id_users_user_id_get_1_without_preload_content(
         self,
-        org_id: StrictStr,
-        user_id: StrictStr,
+        org_id: StrictInt,
+        user_id: StrictInt,
         authorization: Optional[Any] = None,
         _request_timeout: Union[
             None,
@@ -807,12 +1630,12 @@ class UsersApi:
     ) -> RESTResponseType:
         """Get User
 
-        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get details for a specific user in an organization.  Returns detailed information about a user within the specified organization. The requesting user must be a member of the organization to access this endpoint.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: int
         :param authorization:
         :type authorization: object
         :param _request_timeout: timeout setting for this request. If one
@@ -849,8 +1672,10 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
+            '404': "UserNotFoundErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -931,7 +1756,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -950,10 +1775,10 @@ class UsersApi:
     ) -> PageUserResponse:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -995,8 +1820,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1012,7 +1838,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_with_http_info(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1031,10 +1857,10 @@ class UsersApi:
     ) -> ApiResponse[PageUserResponse]:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1076,8 +1902,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1093,7 +1920,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_without_preload_content(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1112,10 +1939,10 @@ class UsersApi:
     ) -> RESTResponseType:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1157,8 +1984,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1246,7 +2074,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_0(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1265,10 +2093,10 @@ class UsersApi:
     ) -> PageUserResponse:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1310,8 +2138,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1327,7 +2156,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_0_with_http_info(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1346,10 +2175,10 @@ class UsersApi:
     ) -> ApiResponse[PageUserResponse]:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1391,8 +2220,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1408,7 +2238,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_0_without_preload_content(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1427,10 +2257,10 @@ class UsersApi:
     ) -> RESTResponseType:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1472,8 +2302,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1561,7 +2392,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_1(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1580,10 +2411,10 @@ class UsersApi:
     ) -> PageUserResponse:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1625,8 +2456,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1642,7 +2474,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_1_with_http_info(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1661,10 +2493,10 @@ class UsersApi:
     ) -> ApiResponse[PageUserResponse]:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1706,8 +2538,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1723,7 +2556,7 @@ class UsersApi:
     @validate_call
     def get_users_v1_organizations_org_id_users_get_1_without_preload_content(
         self,
-        org_id: StrictStr,
+        org_id: StrictInt,
         skip: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         authorization: Optional[Any] = None,
@@ -1742,10 +2575,10 @@ class UsersApi:
     ) -> RESTResponseType:
         """Get Users
 
-        Get paginated list of users for a specific organization.  Returns a paginated list of all users associated with the specified organization. The requesting user must be a member of the organization to access this endpoint.
+        Get users for the specified organization.  Returns a paginated list of all users that belong to the specified organization. Results include user details such as name, email, GitHub username, and avatar. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param org_id: (required)
-        :type org_id: str
+        :type org_id: int
         :param skip:
         :type skip: int
         :param limit:
@@ -1787,8 +2620,9 @@ class UsersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageUserResponse",
+            '429': "APIRateLimitErrorResponse",
+            '403': "PermissionsErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

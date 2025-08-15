@@ -6,12 +6,14 @@ Represents a user in API responses
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | 
-**email** | **str** |  | 
-**github_user_id** | **str** |  | 
-**github_username** | **str** |  | 
-**avatar_url** | **str** |  | 
-**full_name** | **str** |  | 
+**id** | **int** | Unique user ID | 
+**email** | **str** |  | [optional] 
+**github_user_id** | **str** | GitHub user ID | 
+**github_username** | **str** | GitHub username | 
+**avatar_url** | **str** |  | [optional] 
+**full_name** | **str** |  | [optional] 
+**role** | **str** |  | [optional] 
+**is_admin** | **bool** |  | [optional] 
 
 ## Example
 
