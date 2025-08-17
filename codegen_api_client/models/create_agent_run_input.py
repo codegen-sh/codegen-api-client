@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,11 @@ class CreateAgentRunInput(BaseModel):
     CreateAgentRunInput
     """ # noqa: E501
     prompt: StrictStr
-    __properties: ClassVar[List[str]] = ["prompt"]
+    images: Optional[List[StrictStr]] = None
+    metadata: Optional[Dict[str, Any]] = None
+    repo_id: Optional[StrictInt] = None
+    model: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["prompt", "images", "metadata", "repo_id", "model"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,6 +72,26 @@ class CreateAgentRunInput(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if images (nullable) is None
+        # and model_fields_set contains the field
+        if self.images is None and "images" in self.model_fields_set:
+            _dict['images'] = None
+
+        # set to None if metadata (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata is None and "metadata" in self.model_fields_set:
+            _dict['metadata'] = None
+
+        # set to None if repo_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.repo_id is None and "repo_id" in self.model_fields_set:
+            _dict['repo_id'] = None
+
+        # set to None if model (nullable) is None
+        # and model_fields_set contains the field
+        if self.model is None and "model" in self.model_fields_set:
+            _dict['model'] = None
+
         return _dict
 
     @classmethod
@@ -80,7 +104,11 @@ class CreateAgentRunInput(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "prompt": obj.get("prompt")
+            "prompt": obj.get("prompt"),
+            "images": obj.get("images"),
+            "metadata": obj.get("metadata"),
+            "repo_id": obj.get("repo_id"),
+            "model": obj.get("model")
         })
         return _obj
 

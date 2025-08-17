@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **created_at** | **str** |  | [optional] 
 **web_url** | **str** |  | [optional] 
 **result** | **str** |  | [optional] 
+**source_type** | [**ApiAgentRunSourceType**](ApiAgentRunSourceType.md) |  | [optional] 
+**github_pull_requests** | [**List[GithubPullRequestResponse]**](GithubPullRequestResponse.md) |  | [optional] 
+**metadata** | **Dict[str, object]** |  | [optional] 
 
 ## Example
 

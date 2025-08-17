@@ -60,7 +60,7 @@ class OrganizationsApi:
     ) -> PageOrganizationResponse:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -102,8 +102,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -137,7 +137,7 @@ class OrganizationsApi:
     ) -> ApiResponse[PageOrganizationResponse]:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -179,8 +179,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -214,7 +214,7 @@ class OrganizationsApi:
     ) -> RESTResponseType:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -256,8 +256,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -360,7 +360,7 @@ class OrganizationsApi:
     ) -> PageOrganizationResponse:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -402,8 +402,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -437,7 +437,7 @@ class OrganizationsApi:
     ) -> ApiResponse[PageOrganizationResponse]:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -479,8 +479,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -514,7 +514,7 @@ class OrganizationsApi:
     ) -> RESTResponseType:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -556,8 +556,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -660,7 +660,7 @@ class OrganizationsApi:
     ) -> PageOrganizationResponse:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -702,8 +702,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -737,7 +737,7 @@ class OrganizationsApi:
     ) -> ApiResponse[PageOrganizationResponse]:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -779,8 +779,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -814,7 +814,7 @@ class OrganizationsApi:
     ) -> RESTResponseType:
         """Get Organizations
 
-        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.
+        Get organizations for the authenticated user.  Returns a paginated list of all organizations that the authenticated user is a member of. Results include basic organization details such as name, ID, and membership information. Use pagination parameters to control the number of results returned.  Rate limit: 60 requests per 30 seconds.
 
         :param skip:
         :type skip: int
@@ -856,8 +856,8 @@ class OrganizationsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PageOrganizationResponse",
+            '429': "APIRateLimitErrorResponse",
             '422': "HTTPValidationError",
-            '429': "FastAPIRateLimitResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

@@ -6,6 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **prompt** | **str** |  | 
+**images** | **List[str]** |  | [optional] 
+**metadata** | **Dict[str, object]** |  | [optional] 
+**repo_id** | **int** |  | [optional] 
+**model** | **str** |  | [optional] 
 
 ## Example
 

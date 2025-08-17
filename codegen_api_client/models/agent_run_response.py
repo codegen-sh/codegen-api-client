@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from codegen_api_client.models.api_agent_run_source_type import ApiAgentRunSourceType
+from codegen_api_client.models.github_pull_request_response import GithubPullRequestResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +34,10 @@ class AgentRunResponse(BaseModel):
     created_at: Optional[StrictStr] = None
     web_url: Optional[StrictStr] = None
     result: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "organization_id", "status", "created_at", "web_url", "result"]
+    source_type: Optional[ApiAgentRunSourceType] = None
+    github_pull_requests: Optional[List[GithubPullRequestResponse]] = None
+    metadata: Optional[Dict[str, Any]] = None
+    __properties: ClassVar[List[str]] = ["id", "organization_id", "status", "created_at", "web_url", "result", "source_type", "github_pull_requests", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +78,13 @@ class AgentRunResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in github_pull_requests (list)
+        _items = []
+        if self.github_pull_requests:
+            for _item_github_pull_requests in self.github_pull_requests:
+                if _item_github_pull_requests:
+                    _items.append(_item_github_pull_requests.to_dict())
+            _dict['github_pull_requests'] = _items
         # set to None if status (nullable) is None
         # and model_fields_set contains the field
         if self.status is None and "status" in self.model_fields_set:
@@ -93,6 +105,21 @@ class AgentRunResponse(BaseModel):
         if self.result is None and "result" in self.model_fields_set:
             _dict['result'] = None
 
+        # set to None if source_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_type is None and "source_type" in self.model_fields_set:
+            _dict['source_type'] = None
+
+        # set to None if github_pull_requests (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_pull_requests is None and "github_pull_requests" in self.model_fields_set:
+            _dict['github_pull_requests'] = None
+
+        # set to None if metadata (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata is None and "metadata" in self.model_fields_set:
+            _dict['metadata'] = None
+
         return _dict
 
     @classmethod
@@ -110,7 +137,10 @@ class AgentRunResponse(BaseModel):
             "status": obj.get("status"),
             "created_at": obj.get("created_at"),
             "web_url": obj.get("web_url"),
-            "result": obj.get("result")
+            "result": obj.get("result"),
+            "source_type": obj.get("source_type"),
+            "github_pull_requests": [GithubPullRequestResponse.from_dict(_item) for _item in obj["github_pull_requests"]] if obj.get("github_pull_requests") is not None else None,
+            "metadata": obj.get("metadata")
         })
         return _obj
 

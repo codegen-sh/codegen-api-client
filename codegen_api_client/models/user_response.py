@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,13 +26,15 @@ class UserResponse(BaseModel):
     """
     Represents a user in API responses
     """ # noqa: E501
-    id: StrictInt
-    email: Optional[StrictStr]
-    github_user_id: StrictStr
-    github_username: StrictStr
-    avatar_url: Optional[StrictStr]
-    full_name: Optional[StrictStr]
-    __properties: ClassVar[List[str]] = ["id", "email", "github_user_id", "github_username", "avatar_url", "full_name"]
+    id: StrictInt = Field(description="Unique user ID")
+    email: Optional[StrictStr] = None
+    github_user_id: StrictStr = Field(description="GitHub user ID")
+    github_username: StrictStr = Field(description="GitHub username")
+    avatar_url: Optional[StrictStr] = None
+    full_name: Optional[StrictStr] = None
+    role: Optional[StrictStr] = None
+    is_admin: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["id", "email", "github_user_id", "github_username", "avatar_url", "full_name", "role", "is_admin"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +90,16 @@ class UserResponse(BaseModel):
         if self.full_name is None and "full_name" in self.model_fields_set:
             _dict['full_name'] = None
 
+        # set to None if role (nullable) is None
+        # and model_fields_set contains the field
+        if self.role is None and "role" in self.model_fields_set:
+            _dict['role'] = None
+
+        # set to None if is_admin (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_admin is None and "is_admin" in self.model_fields_set:
+            _dict['is_admin'] = None
+
         return _dict
 
     @classmethod
@@ -105,7 +117,9 @@ class UserResponse(BaseModel):
             "github_user_id": obj.get("github_user_id"),
             "github_username": obj.get("github_username"),
             "avatar_url": obj.get("avatar_url"),
-            "full_name": obj.get("full_name")
+            "full_name": obj.get("full_name"),
+            "role": obj.get("role"),
+            "is_admin": obj.get("is_admin")
         })
         return _obj
 

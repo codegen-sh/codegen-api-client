@@ -31,3 +31,4 @@ jobs:
       - name: Test with pytest
         run: |
           uv run pytest --cov=codegen_api_client
+
